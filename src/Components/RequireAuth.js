@@ -13,6 +13,10 @@ const RequireAuth = ({ children }) => {
     if (loading) {
         return <div>loading ....</div>
     }
+    if (!user) {
+        return <div>user not found ....</div>
+    }
+
 
 
     // user.providerData[0].providerId === 'password' && 

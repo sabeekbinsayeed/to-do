@@ -7,8 +7,11 @@ import './Todo.css'
 const Todo = () => {
 
     const [task, setTask] = useState([])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/task').then(res => res.json()).then(data => setTask(data))
+    // }, [task])
     useEffect(() => {
-        fetch('http://localhost:5000/task').then(res => res.json()).then(data => setTask(data))
+        fetch('https://arcane-plateau-22519.herokuapp.com/task').then(res => res.json()).then(data => setTask(data))
     }, [task])
 
     const [data, setData] = useState([])
@@ -21,19 +24,6 @@ const Todo = () => {
     const [info, setInfo] = useState([])
 
     let values
-    const handleBlur = event => {
-        values = event.target.value
-
-        setData1(values)
-    }
-
-    const handleClick = event => {
-        if (event.target.checked) {
-            alert('done');
-            console.log('done')
-        }
-    }
-
 
 
 
@@ -41,7 +31,7 @@ const Todo = () => {
         const proceed = window.confirm('sure?');
         if (proceed) {
             console.log('deleting user with id, ', id);
-            const url = `http://localhost:5000/task/${id}`;
+            const url = `https://arcane-plateau-22519.herokuapp.com/task/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -90,7 +80,7 @@ const Todo = () => {
         setData4('')
 
         console.log('kisu ki hosce')
-        fetch('http://localhost:5000/task', {
+        fetch('https://arcane-plateau-22519.herokuapp.com/task', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -111,7 +101,18 @@ const Todo = () => {
 
 
 
+    const handleChange = e => {
+        var checked = e.target.checked;
+        console.log(checked)
+    }
 
+    const handleBlur = event => {
+        values = event.target.value;
+        const check = event.target.checked;
+        console.log(check)
+
+        setData1(values)
+    }
 
     return (
         <div className='ms-20' >
